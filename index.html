@@ -108,12 +108,6 @@
                 </label>
             </div>
             
-            <div class="full-width" style="margin-top: 5px;">
-                <label>Further Information Needed (Optional):</label>
-                <div class="info-text">Ask the consumer for any specific details required to proceed.</div>
-                <textarea id="furtherInfo" rows="2" placeholder="e.g. Please could you provide a copy of your receipt and confirm how you paid?"></textarea>
-            </div>
-            
             
 
             <div class="section-header">2. Legal Position & Remedies (Complete Hub Catalog)</div>
@@ -387,11 +381,15 @@
                 <div class="info-text">Paste a Citizens Advice template URL to include in the email.</div>
                 <input type="url" id="templateLink" placeholder="e.g. https://www.citizensadvice.org.uk/...">
             </div>
+            
+            <div class="full-width">
+                <button type="button" onclick="generateEmail()">Generate Professional Email</button>
+            </div>
 
             </form>
         </div>
     <div class="output-container" id="outputSection">
-            <button type="button" onclick="generateEmail()" style="margin-top: 0; margin-bottom: 20px;">Generate Professional Email</button>
+            
             <h2 style="color: #004b87; margin-top: 0;">Generated Professional Email:</h2>
             <textarea id="emailOutput" readonly></textarea>
             <button type="button" class="copy-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
@@ -479,13 +477,7 @@
                 pciQuestionText = "\n\nTo help us advise you further, could you please confirm: Did you receive pre-contractual information prior to or at the time of your purchase? This includes paperwork containing the terms and conditions, or details regarding your statutory right to a 14-day cooling-off period.";
             }
 
-            const furtherInfo = document.getElementById('furtherInfo').value.trim();
-            let furtherInfoText = "";
-            if (furtherInfo) {
-                furtherInfoText = "\n\n" + furtherInfo;
-            }
-
-            let emailText = "Dear " + consumer + ",\n\nThank you for your enquiry to the Citizens Advice consumer service dated " + today + ". Your reference number is " + ref + ". Please quote this reference number in any future correspondence regarding this issue.\n\nWe understand from your email that " + issue + "." + expectationText + pciQuestionText + furtherInfoText;
+            let emailText = "Dear " + consumer + ",\n\nThank you for your enquiry to the Citizens Advice consumer service dated " + today + ". Your reference number is " + ref + ". Please quote this reference number in any future correspondence regarding this issue.\n\nWe understand from your email that " + issue + "." + expectationText + pciQuestionText;
 
             if (isAdminOrAdminGroup) {
                 // Administrative / Special / Out of scope scenarios:
